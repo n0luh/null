@@ -19,113 +19,61 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #222;
+            background: #000;
             position: relative;
             font-family: Arial, sans-serif;
-            color: #fff;
         }
 
-        /* Estilos das camadas */
-        .layer {
+        /* Estilos do título */
+        h1 {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('layer-image.jpg') no-repeat center center;
-            background-size: cover;
-            mix-blend-mode: multiply;
-            z-index: 1;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+            z-index: 3;
         }
 
-        .layer2 {
-            background: rgba(100, 100, 100, 0.3);
-        }
-
-        /* Estilos do sprite principal */
+        /* Estilos do sprite (GIF) */
         .sprite {
-            width: 100px;
-            height: 100px;
-            background: url('sprite.png') no-repeat center center;
+            width: 400px; /* Mudar o tamanho aqui */
+            height: 400px; /* Mudar o tamanho aqui */
+            background: url('https://github.com/n0luh/null/raw/main/n0luh.gif') no-repeat center center;
             background-size: contain;
-            z-index: 5;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            transition: transform 0.05s;
+            z-index: 1;
+            transition: transform 0.05s ease;
         }
 
-        /* Contêiner dos sprites */
-        #sprite-container {
+        /* Estilos do vignet */
+        .vignet {
+            width: 100%; /* Mudar o tamanho aqui */
+            height: 100%; /* Mudar o tamanho aqui */
+            background: url('https://github.com/n0luh/null/raw/main/vignet.png') no-repeat center center;
+            background-size: cover;
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 2;
-        }
-
-        /* Estilos do sprite invisível com animação */
-        .sprite-invisible {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: url('small-sprite.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0;
-            animation: move-up 2s ease-in-out forwards;
-        }
-
-        /* Animação para o sprite invisível */
-        @keyframes move-up {
-            from {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-200px);
-                opacity: 0;
-            }
-        }
-
-        /* Estilo do título */
-        h1 {
-            position: relative;
-            z-index: 6;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-align: center;
         }
     </style>
 </head>
 <body>
     <h1>NullWork</h1>
-    <div class="layer layer1"></div>
-    <div class="layer layer2"></div>
     <div class="sprite" id="main-sprite"></div>
-    <div id="sprite-container"></div>
+    <div class="vignet"></div>
 
     <script>
-        // Exemplo de script para adicionar sprites invisíveis dinamicamente
-        document.addEventListener('DOMContentLoaded', () => {
-            const spriteContainer = document.getElementById('sprite-container');
-
-            // Função para criar um sprite invisível
-            function createInvisibleSprite() {
-                const sprite = document.createElement('div');
-                sprite.classList.add('sprite-invisible');
-                // Definir posição aleatória
-                sprite.style.left = Math.random() * 100 + '%';
-                sprite.style.top = Math.random() * 100 + '%';
-                spriteContainer.appendChild(sprite);
-
-                // Remover o sprite após a animação
-                sprite.addEventListener('animationend', () => {
-                    sprite.remove();
-                });
-            }
-
-            // Criar sprites invisíveis a cada 1 segundo
-            setInterval(createInvisibleSprite, 1000);
+        // Movimento parallax do sprite
+        document.addEventListener('mousemove', (e) => {
+            const sprite = document.getElementById('main-sprite');
+            const x = (window.innerWidth / 2 - e.clientX) * 0.02;
+            const y = (window.innerHeight / 2 - e.clientY) * 0.02;
+            sprite.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
         });
     </script>
 </body>
