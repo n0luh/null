@@ -1,18 +1,132 @@
 <!DOCTYPE html>
-<html lang="en-us">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Nullwork</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-           <h1>NullWork </h1>
-          <div class="layer layer1"></div>
-          <div class="layer layer2"></div>
-          <div class="sprite" id="main-sprite"></div>
-          <div id="sprite-container"></div>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nullwork</title>
+    <style>
+        /* Reset de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-          <script src="script.js"></script>
-    </body>
+        /* Estilos do body */
+        body {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #222;
+            position: relative;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        /* Estilos das camadas */
+        .layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('layer-image.jpg') no-repeat center center;
+            background-size: cover;
+            mix-blend-mode: multiply;
+            z-index: 1;
+        }
+
+        .layer2 {
+            background: rgba(100, 100, 100, 0.3);
+        }
+
+        /* Estilos do sprite principal */
+        .sprite {
+            width: 100px;
+            height: 100px;
+            background: url('sprite.png') no-repeat center center;
+            background-size: contain;
+            z-index: 5;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.05s;
+        }
+
+        /* Contêiner dos sprites */
+        #sprite-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        /* Estilos do sprite invisível com animação */
+        .sprite-invisible {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('small-sprite.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0;
+            animation: move-up 2s ease-in-out forwards;
+        }
+
+        /* Animação para o sprite invisível */
+        @keyframes move-up {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-200px);
+                opacity: 0;
+            }
+        }
+
+        /* Estilo do título */
+        h1 {
+            position: relative;
+            z-index: 6;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>NullWork</h1>
+    <div class="layer layer1"></div>
+    <div class="layer layer2"></div>
+    <div class="sprite" id="main-sprite"></div>
+    <div id="sprite-container"></div>
+
+    <script>
+        // Exemplo de script para adicionar sprites invisíveis dinamicamente
+        document.addEventListener('DOMContentLoaded', () => {
+            const spriteContainer = document.getElementById('sprite-container');
+
+            // Função para criar um sprite invisível
+            function createInvisibleSprite() {
+                const sprite = document.createElement('div');
+                sprite.classList.add('sprite-invisible');
+                // Definir posição aleatória
+                sprite.style.left = Math.random() * 100 + '%';
+                sprite.style.top = Math.random() * 100 + '%';
+                spriteContainer.appendChild(sprite);
+
+                // Remover o sprite após a animação
+                sprite.addEventListener('animationend', () => {
+                    sprite.remove();
+                });
+            }
+
+            // Criar sprites invisíveis a cada 1 segundo
+            setInterval(createInvisibleSprite, 1000);
+        });
+    </script>
+</body>
 </html>
