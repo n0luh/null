@@ -1,13 +1,72 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 15px;
-    text-align: center;
+body {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+  position: relative;
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('layer-image.jpg') no-repeat center center;
+  background-size: cover;
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+.layer2 {
+  background: rgba(0, 255, 255, 0.3);
+}
+
+.sprite {
+  width: 100px;
+  height: 100px;
+  background: url('sprite.png') no-repeat center center;
+  background-size: contain;
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s;
+}
+
+#sprite-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.sprite-invisible {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: url('small-sprite.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0;
+  animation: move-up 2s ease-in-out forwards;
+}
+
+@keyframes move-up {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
 }
