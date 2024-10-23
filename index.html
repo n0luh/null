@@ -21,24 +21,35 @@
             align-items: center;
             background: #000;
             position: relative;
-            font-family: Arial, sans-serif;
+            font-family: sans-serif;
         }
 
         /* Estilos do título (sincronizado com a tela) */
         h1 {
             position: absolute;
-            bottom: 2vh;  /* margem inferior responsiva */
-            right: 2vw;   /* margem direita responsiva */
-            font-size: 3vw; /* tamanho do texto responsivo ao tamanho da tela */
+            bottom: 2vh;
+            right: 2vw;
+            font-size: 3vw;
             color: rgba(255, 255, 255, 0.3);
+            z-index: 3;
+        }
+
+        /* Estilo do nome no topo centralizado */
+        #nome {
+            position: absolute;
+            top: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4vw;
+            color: white;
             z-index: 3;
         }
 
         /* Estilos do sprite (sincronizado com Y da tela) */
         .sprite {
-            width: 60vh; /* Largura proporcional à altura da tela (quadrado perfeito) */
-            height: 60vh; /* Altura proporcional à altura da tela */
-            background: url('https://cdn.discordapp.com/attachments/1293723974450020353/1298294250756112507/n0luh.gif?ex=67190a3e&is=6717b8be&hm=2487d22ea9efed30c648ddf4341076fa367598095a8b4a890b8d7c56c003a964&') no-repeat center center;
+            width: 60vh;
+            height: 60vh;
+            background: url('https://cdn.discordapp.com/attachments/1293723974450020353/1298294250756112507/n0luh.gif') no-repeat center center;
             background-size: contain;
             position: absolute;
             top: 50%;
@@ -48,11 +59,67 @@
             transition: transform 0.05s ease;
         }
 
+        /* Estilos do texto na esquerda */
+        #texto-esquerda {
+            position: absolute;
+            top: 30%;
+            left: 2vw;
+            color: white;
+            font-size: 1.5vw;
+            max-width: 20vw;
+            z-index: 3;
+        }
+
+        /* Estilos do texto na direita */
+        #texto-direita {
+            position: absolute;
+            top: 30%;
+            right: 2vw;
+            color: white;
+            font-size: 1.5vw;
+            max-width: 20vw;
+            z-index: 3;
+        }
+
+        /* Botão de login */
+        #login-btn {
+            position: absolute;
+            top: 5vh;
+            right: 2vw;
+            color: white;
+            border: none;
+            background: none;
+            font-weight: bold;
+            border-bottom: 2px solid white;
+            cursor: pointer;
+        }
+
+        /* Botão extra que aparece após login */
+        #action-btn {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 50px;
+            background: black;
+            color: white;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            display: none;
+            transition: all 0.2s ease;
+        }
+
+        #action-btn:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+
         /* Estilos do vignet */
         .vignet {
             width: 150%; 
             height: 150%; 
-            background: url('https://cdn.discordapp.com/attachments/1293723974450020353/1298294250349396028/vignet.png?ex=67190a3e&is=6717b8be&hm=0447eb363e396a9cd95328f67d89632ab21a336e71427414a2d9b6da74aebb39&') no-repeat center center;
+            background: url('https://cdn.discordapp.com/attachments/1293723974450020353/1298294250349396028/vignet.png') no-repeat center center;
             background-size: cover;
             position: absolute;
             top: 50%;
@@ -60,12 +127,66 @@
             transform: translate(-50%, -50%);
             z-index: 2;
         }
+
+        /* Fade quando clicado no botão */
+        .fade-out {
+            background: black;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeOut 0.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Mobile view */
+        @media (max-width: 768px) and (orientation: portrait) {
+            #texto-esquerda, #texto-direita {
+                display: none;
+            }
+            #view-bio-btn {
+                display: block;
+            }
+        }
+
+        /* Botão de View Bio no celular */
+        #view-bio-btn {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 50px;
+            background: black;
+            color: white;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            display: none;
+        }
+
     </style>
 </head>
 <body>
     <h1>NullWork</h1>
+    <div id="nome">N0luh</div>
     <div class="sprite" id="main-sprite"></div>
+    <div id="texto-esquerda">Texto da esquerda</div>
+    <div id="texto-direita">Texto da direita</div>
     <div class="vignet"></div>
+
+    <!-- Botões -->
+    <button id="login-btn">Login</button>
+    <button id="action-btn">Ação</button>
+    <button id="view-bio-btn">View Bio</button>
 
     <script>
         // Movimento parallax do sprite
@@ -74,6 +195,35 @@
             const x = (window.innerWidth / 2 - e.clientX) * 0.02;
             const y = (window.innerHeight / 2 - e.clientY) * 0.02;
             sprite.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+        });
+
+        // Botão de login
+        const loginBtn = document.getElementById('login-btn');
+        const actionBtn = document.getElementById('action-btn');
+        const viewBioBtn = document.getElementById('view-bio-btn');
+
+        loginBtn.addEventListener('click', () => {
+            // Validação do login
+            let loginCorreto = true; // Isso será substituído pela validação real
+
+            if (loginCorreto) {
+                actionBtn.style.display = 'block';
+            }
+        });
+
+        // Ação do botão que aparece após login
+        actionBtn.addEventListener('click', () => {
+            document.body.innerHTML += '<div class="fade-out"></div>';
+            setTimeout(() => {
+                // Mostrar os botões e o texto na tela
+                document.getElementById('texto-esquerda').innerHTML = 'Novo texto após fade';
+                // Outros botões sem nomes para fazer depois
+            }, 500);
+        });
+
+        // Botão de voltar no celular e desktop
+        viewBioBtn.addEventListener('click', () => {
+            alert('Mostrar bio aqui.');
         });
     </script>
 </body>
