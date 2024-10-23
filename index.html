@@ -92,6 +92,18 @@
             font-weight: bold;
             border-bottom: 2px solid white;
             cursor: pointer;
+            z-index: 4; /* Coloca na frente do vignet */
+        }
+
+        /* Input de ID */
+        #login-input {
+            position: absolute;
+            top: 7vh;
+            right: 2vw;
+            width: 150px;
+            padding: 5px;
+            display: none;
+            z-index: 4; /* Coloca na frente do vignet */
         }
 
         /* Botão extra que aparece após login */
@@ -109,6 +121,7 @@
             cursor: pointer;
             display: none;
             transition: all 0.2s ease;
+            z-index: 4; /* Coloca na frente do vignet */
         }
 
         #action-btn:hover {
@@ -185,6 +198,7 @@
 
     <!-- Botões -->
     <button id="login-btn">Login</button>
+    <input type="text" id="login-input" placeholder="Digite o ID">
     <button id="action-btn">Ação</button>
     <button id="view-bio-btn">View Bio</button>
 
@@ -200,14 +214,23 @@
         // Botão de login
         const loginBtn = document.getElementById('login-btn');
         const actionBtn = document.getElementById('action-btn');
+        const loginInput = document.getElementById('login-input');
         const viewBioBtn = document.getElementById('view-bio-btn');
 
         loginBtn.addEventListener('click', () => {
-            // Validação do login
-            let loginCorreto = true; // Isso será substituído pela validação real
+            // Exibir input para digitar ID
+            loginInput.style.display = 'block';
+        });
 
-            if (loginCorreto) {
-                actionBtn.style.display = 'block';
+        // Validação do ID
+        loginInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                if (loginInput.value === 'tokentemporarioteste123') {
+                    actionBtn.style.display = 'block';
+                    loginInput.style.display = 'none';
+                } else {
+                    alert('ID incorreto.');
+                }
             }
         });
 
@@ -217,7 +240,6 @@
             setTimeout(() => {
                 // Mostrar os botões e o texto na tela
                 document.getElementById('texto-esquerda').innerHTML = 'Novo texto após fade';
-                // Outros botões sem nomes para fazer depois
             }, 500);
         });
 
