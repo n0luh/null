@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     button.addEventListener('click', function() {
-        window.open('discord.gg/sSnum9ytTm', '_blank');
+        window.location.href ='https://discord.gg/sSnum9ytTm';
     });
     
     // Evento de mouseout
