@@ -63,28 +63,29 @@ body {
     width: 40vw; /* 20% da largura da viewport */
     height: 40vh; /* Mantém quadrado */
     top: 40%;
-    left: 60%;
+    left: 40%;
+    opacity: 1; /* Leve transparência */
     border: none;
     padding: 0;
     background: none;
     cursor: pointer;
     display: inline-block;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 20; /* Acima da imagem de fundo */
 }
 
 /* Estilo para a imagem dentro do botão */
 .b1 .button-image {
-    width: 200px; /* Tamanho inicial da imagem */
-    height: 200px;
+    opacity: 0.9; /* Leve transparência */
     object-fit: cover;
     transition: transform 0.3s ease, opacity 0.3s ease;
     z-index: 20; /* Acima da imagem de fundo */
 }
 
 /* Estado de hover do botão */
-.b1:hover .button-image {
-    transform: scale(1.2) translateY(-10px); /* Aumenta o tamanho e move para cima */
-    opacity: 0.8; /* Leve transparência */
+.b2:hover .button-image {
+    transform: scale(1) translateY(0px); /* Aumenta o tamanho e move para cima */
+    opacity: 1; /* Leve transparência */
 }
 
 /* Opcional: Adiciona sombra ao botão quando em hover */
@@ -117,8 +118,18 @@ body {
 #quadro3 {
     width: 90vw;
     height: 170vh;
-    top: -30%;
+    top: -44%;
     left: -15%;
+    z-index: 3; /* Acima de quadro1 */
+}
+
+/* Quadro 3 - Paralaxe */
+#quadro3-2 {
+    width: 95vw;
+    height: 175vh;
+    top: -46%;
+    left: -18%;
+    opacity: 0.1; /* Leve transparência */
     z-index: 3; /* Acima de quadro1 */
 }
 
