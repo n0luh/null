@@ -62,8 +62,8 @@ body {
     overflow: hidden;
     width: 40vw; /* 20% da largura da viewport */
     height: 40vh; /* Mantém quadrado */
-    top: 40%;
-    left: 40%;
+    top: 0%;
+    left: 0%;
     opacity: 1; /* Leve transparência */
     border: none;
     padding: 0;
@@ -77,6 +77,8 @@ body {
 /* Estilo para a imagem dentro do botão */
 .b1 .button-image {
     opacity: 0.9; /* Leve transparência */
+    max-width: 60%;
+    height: auto;
     object-fit: cover;
     transition: transform 0.3s ease, opacity 0.3s ease;
     z-index: 20; /* Acima da imagem de fundo */
@@ -164,6 +166,11 @@ body {
         left: 0%;
         z-index: 4; /* Acima da imagem de fundo */
     }
+    /* Quadro 3 - Paralaxe */
+#quadro3-2 {
+    width: 0vw;
+    height: 0vh;
+}
     #quadro4 {
         width: 100vw;
         height: 100vh;
