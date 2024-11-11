@@ -1,230 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming soon...</title>
-    <style>
-        /* Reset de estilos */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Estilos do body */
-        body {
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-            position: relative;
-            font-family: sans-serif;
-        }
-
-        /* Estilos do título (sincronizado com a tela) */
-        h1 {
-            position: absolute;
-            bottom: 2vh;
-            right: 2vw;
-            font-size: 3vw;
-            color: rgba(40, 40, 40, 0.1);
-            z-index: 3;
-        }
-
-        /* Estilo do nome no topo centralizado */
-        #nome {
-            position: absolute;
-            top: 5vh;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 4vw;
-            color: white;
-            z-index: 3;
-        }
-
-        /* Estilos do sprite (sincronizado com Y da tela) */
-        .sprite {
-            width: 60vh;
-            height: 60vh;
-            background: url('https://media.discordapp.net/attachments/1294141808951033856/1305362779485765672/ezgif.com-animated-gif-maker_2.gif?ex=6732c153&is=67316fd3&hm=80e84608ebd3ead6250ca13e14364846cb312e2fd72801fe9b0ee77eb6812aa2&=&width=677&height=677') no-repeat center center;
-            background-size: contain;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            transition: transform 0.05s ease;
-        }
-
-        /* Estilos do texto na esquerda */
-        #texto-esquerda {
-            position: absolute;
-            top: 30%;
-            left: 2vw;
-            color: white;
-            font-size: 1.5vw;
-            max-width: 20vw;
-            z-index: 3;
-        }
-
-        /* Estilos do texto na direita */
-        #texto-direita {
-            position: absolute;
-            top: 30%;
-            right: 2vw;
-            color: white;
-            font-size: 1.5vw;
-            max-width: 20vw;
-            z-index: 3;
-        }
-
-        /* Botão de login */
-        #login-btn {
-            position: absolute;
-            top: 5vh;
-            right: 2vw;
-            color: white;
-            border: none;
-            background: none;
-            font-weight: bold;
-            border-bottom: 2px solid white;
-            cursor: pointer;
-        }
-
-        /* Botão extra que aparece após login */
-        #action-btn {
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 50px;
-            background: black;
-            color: white;
-            border-radius: 25px;
-            border: none;
-            cursor: pointer;
-            display: none;
-            transition: all 0.2s ease;
-        }
-
-        #action-btn:hover {
-            transform: translateX(-50%) scale(1.1);
-        }
-
-        /* Estilos do vignet */
-        .vignet {
-            width: 150%; 
-            height: 150%; 
-            background: url('https://cdn.discordapp.com/attachments/1293723974450020353/1298294250349396028/vignet.png?ex=67190a3e&is=6717b8be&hm=0447eb363e396a9cd95328f67d89632ab21a336e71427414a2d9b6da74aebb39&') no-repeat center center;
-            background-size: cover;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-        }
-
-        /* Fade quando clicado no botão */
-        .fade-out {
-            background: black;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            opacity: 0;
-            animation: fadeOut 0.5s forwards;
-        }
-
-        @keyframes fadeOut {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Mobile view */
-        @media (max-width: 768px) and (orientation: portrait) {
-            #texto-esquerda, #texto-direita {
-                display: none;
-            }
-            #view-bio-btn {
-                display: block;
-            }
-        }
-
-        /* Botão de View Bio no celular */
-        #view-bio-btn {
-            position: absolute;
-            top: 80%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 50px;
-            background: black;
-            color: white;
-            border-radius: 25px;
-            border: none;
-            cursor: pointer;
-            display: none;
-        }
-
-    </style>
+    <title>Site com Quadros e Paralaxe</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>...NullWork...</h1>
-    <div id="nome"></div>
-    <div class="sprite" id="main-sprite"></div>
-    <div id="texto-esquerda"></div>
-    <div id="texto-direita"></div>
-    <div class="vignet"></div>
+    <!-- Quadros sobre a imagem de fundo -->
+    <div class="quadro" id="quadro1">
+        <img src="https://media.discordapp.net/attachments/1229100859552694403/1305388983781687326/emoo.png?ex=6732d9ba&is=6731883a&hm=de32d2605f4addf71c86729c87bdbc207e826d1567d60ccb644dd70e36425e01&=&format=webp&quality=lossless&width=375&height=375" alt="Imagem 1">
+    </div>
+    <div class="quadro parallax" id="quadro2">
+        <img src="https://media.discordapp.net/attachments/1294141808951033856/1305387688601321552/nucu.png?ex=6732d885&is=67318705&hm=8855599a133d8e005ca76b8f3ab0b61d6f2d6e4450c7bb128669cb8014211b4a&=&format=webp&quality=lossless&width=417&height=437" alt="Imagem 2">
+    </div>
+    <div class="quadro parallax" id="quadro3">
+        <img src="https://media.discordapp.net/attachments/1294141808951033856/1305377551643971635/render.png?ex=6732cf15&is=67317d95&hm=e0091d89b2cdea964ee23c99d7aa39e9e3e1fc2352a4ee795cbfce23ac074c34&=&format=webp&quality=lossless&width=618&height=677" alt="Imagem 3">
+    </div>
+    <div class="quadro34" id="quadro4">
+        <img src="https://media.discordapp.net/attachments/1294141808951033856/1305377552826896505/cu_doceeeeeeeeeeeeeeee3.png?ex=6732cf15&is=67317d95&hm=463638a71b3420e0e11d46b89539df7033dee31dcf36625f1715bb64da62e000&=&format=webp&quality=lossless&width=1227&height=677" alt="Imagem 4">
+    </div>
 
-    <!-- Botões -->
-    <button id="login-btn"></button>
-    <button id="action-btn"></button>
-    <button id="view-bio-btn"></button>
+    <!-- Botão com animação de hover -->
+    <button href="https://discord.gg/sSnum9ytTm" class="b1 parallax2">
+        <img src="https://media.discordapp.net/attachments/1294141808951033856/1305396700415918130/buttonselec.png?ex=6732e0ea&is=67318f6a&hm=3c192489c4bb48aab3b1607de63f4bf44afc602c87f5dd0b86ac6de6e9552e87&=&format=webp&quality=lossless&width=677&height=677" alt="Botão" class="button-image">
+    </button>
 
-    <script>
-        // Movimento parallax do sprite
-        document.addEventListener('mousemove', (e) => {
-            const sprite = document.getElementById('main-sprite');
-            const x = (window.innerWidth / 2 - e.clientX) * 0.02;
-            const y = (window.innerHeight / 2 - e.clientY) * 0.02;
-            sprite.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-        });
 
-        // Botão de login
-        const loginBtn = document.getElementById('login-btn');
-        const actionBtn = document.getElementById('action-btn');
-        const viewBioBtn = document.getElementById('view-bio-btn');
-
-        loginBtn.addEventListener('click', () => {
-            // Validação do login
-            let loginCorreto = true; // Isso será substituído pela validação real
-
-            if (loginCorreto) {
-                actionBtn.style.display = 'block';
-            }
-        });
-
-        // Ação do botão que aparece após login
-        actionBtn.addEventListener('click', () => {
-            document.body.innerHTML += '<div class="fade-out"></div>';
-            setTimeout(() => {
-                // Mostrar os botões e o texto na tela
-                document.getElementById('texto-esquerda').innerHTML = 'Novo texto após fade';
-                // Outros botões sem nomes para fazer depois
-            }, 500);
-        });
-
-        // Botão de voltar no celular e desktop
-        viewBioBtn.addEventListener('click', () => {
-            alert('Mostrar bio aqui.');
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
