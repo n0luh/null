@@ -1,71 +1,162 @@
+/* Reset básico */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Garantir que html e body ocupem toda a tela e sem scroll */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Remove as barras de rolagem */
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+/* Imagem de fundo */
 body {
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #222;
-  position: relative;
-}
-.layer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: url('layer-image.jpg') no-repeat center center;
-  background-size: cover;
-  mix-blend-mode: multiply;
-  z-index: 1;
+    background-image: url('https://media.discordapp.net/attachments/1294141808951033856/1305377552105472060/cu_doceeeeeeeeeeeeeeee.png?ex=6732cf15&is=67317d95&hm=3be1d6d046e6a46f28cfd253d68d78a2c7dac2bfe48854ffcae22599efcece26&=&format=webp&quality=lossless&width=1227&height=677'); /* Placeholder para imagem de fundo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Mantém o background fixo */
 }
 
-.layer2 {
-  background: rgba(0, 255, 255, 0.3);
+/* Estilo para os quadros */
+.quadro {
+    position: absolute;
+    overflow: hidden;
+    will-change: transform; /* Melhor performance para transformações */
+    transition: transform 0.2s ease-out; /* Suaviza o movimento */
+    /*border: 2px solid rgba(255, 255, 255, 0.5); /* Adicionado para visualização */
+    /*border-radius: 10px; /* Opcional: adiciona bordas arredondadas */
+    /*background-color: rgba(255, 255, 255, 0.2); /* Adicionado para visualização */
+}
+.quadro34 {
+    position: absolute;
+    overflow: hidden;
+    will-change: transform; /* Melhor performance para transformações */
+    transition: transform 0.2s ease-out; /* Suaviza o movimento */
+    /*border: 2px solid rgba(255, 255, 255, 0.5); /* Adicionado para visualização */
+    /*border-radius: 10px; /* Opcional: adiciona bordas arredondadas */
+    /*background-color: rgba(255, 255, 255, 0.2); /* Adicionado para visualização */
 }
 
-.sprite {
-  width: 100px;
-  height: 100px;
-  background: url('sprite.png') no-repeat center center;
-  background-size: contain;
-  z-index: 5;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: transform 0.05s;
+.quadro img {
+    width: 100%;
+    height: 100%;
+    image-rendering: crisp-edges;
+    object-fit: contain; /* Ajusta a imagem para caber totalmente no quadro */
+}
+.quadro34 img {
+    width: 100%;
+    height: 100%;
+    image-rendering: crisp-edges;
+    object-fit: cover; /* Ajusta a imagem para caber totalmente no quadro */
 }
 
-#sprite-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
+/* Estilo básico para o botão */
+.b1 {
+    position: absolute;
+    overflow: hidden;
+    width: 40vw; /* 20% da largura da viewport */
+    height: 40vh; /* Mantém quadrado */
+    top: 40%;
+    left: 60%;
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.sprite-invisible {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background: url('small-sprite.png') no-repeat center center;
-  background-size: contain;
-  opacity: 0;
-  animation: move-up 2s ease-in-out forwards;
+/* Estilo para a imagem dentro do botão */
+.b1 .button-image {
+    width: 200px; /* Tamanho inicial da imagem */
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 20; /* Acima da imagem de fundo */
 }
 
-@keyframes move-up {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-200px);
-    opacity: 0;
-  }
+/* Estado de hover do botão */
+.b1:hover .button-image {
+    transform: scale(1.2) translateY(-10px); /* Aumenta o tamanho e move para cima */
+    opacity: 0.8; /* Leve transparência */
+}
+
+/* Opcional: Adiciona sombra ao botão quando em hover */
+/*.b1:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}*/
+
+
+/* Definições individuais de tamanho e posição */
+
+/* Quadro 1 - Estático */
+#quadro1 {
+    width: 20vw; /* 20% da largura da viewport */
+    height: 20vh; /* Mantém quadrado */
+    top: 85%;
+    left: 90%;
+    z-index: 2; /* Acima da imagem de fundo */
+}
+
+/* Quadro 2 - Paralaxe */
+#quadro2 {
+    width: 45vw;
+    height: 90vh;
+    top: 5%;
+    left: 56%;
+    z-index: 3; /* Acima de quadro1 */
+}
+
+/* Quadro 3 - Paralaxe */
+#quadro3 {
+    width: 90vw;
+    height: 170vh;
+    top: -30%;
+    left: -15%;
+    z-index: 3; /* Acima de quadro1 */
+}
+
+/* Quadro 4 - Estático */
+#quadro4 {
+    width: 100vw;
+    height: 100vh;
+    top: 0%;
+    left: 0%;
+    z-index: 5; /* Acima da imagem de fundo */
+}
+
+/* Responsividade adicional, se necessário */
+@media (max-width: 800px) {
+    #quadro1 {
+        width: 20vw; /* 20% da largura da viewport */
+        height: 20vh; /* Mantém quadrado */
+        top: 85%;
+        left: 90%;
+        z-index: 2; /* Acima da imagem de fundo */
+    }
+    #quadro2 {
+        width: 90vw;
+        height: 90vh;
+        top: 5%;
+        left: 5%;
+    }
+    #quadro3 {
+        width: 30vw; /* 20% da largura da viewport */
+        height: 30vh; /* Mantém quadrado */
+        top: 75%;
+        left: 0%;
+        z-index: 4; /* Acima da imagem de fundo */
+    }
+    #quadro4 {
+        width: 100vw;
+        height: 100vh;
+        top: 0%;
+        left: 0%;
+    }
 }
