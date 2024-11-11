@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nullwork</title>
+    <title>Coming soon...</title>
     <style>
         /* Reset de estilos */
         * {
@@ -35,7 +35,7 @@
         }
 
         /* Estilo do nome no topo centralizado */
-        /*#nome {
+        #nome {
             position: absolute;
             top: 5vh;
             left: 50%;
@@ -43,13 +43,13 @@
             font-size: 4vw;
             color: white;
             z-index: 3;
-        }*/
+        }
 
         /* Estilos do sprite (sincronizado com Y da tela) */
         .sprite {
             width: 60vh;
             height: 60vh;
-            background: url('https://cdn.discordapp.com/attachments/1293723974450020353/1298294250756112507/n0luh.gif?ex=67190a3e&is=6717b8be&hm=2487d22ea9efed30c648ddf4341076fa367598095a8b4a890b8d7c56c003a964&') no-repeat center center;
+            background: url('https://media.discordapp.net/attachments/1294141808951033856/1305362779485765672/ezgif.com-animated-gif-maker_2.gif?ex=6732c153&is=67316fd3&hm=80e84608ebd3ead6250ca13e14364846cb312e2fd72801fe9b0ee77eb6812aa2&=&width=677&height=677') no-repeat center center;
             background-size: contain;
             position: absolute;
             top: 50%;
@@ -82,7 +82,7 @@
         }
 
         /* Botão de login */
-        /*#login-btn {
+        #login-btn {
             position: absolute;
             top: 5vh;
             right: 2vw;
@@ -92,19 +92,7 @@
             font-weight: bold;
             border-bottom: 2px solid white;
             cursor: pointer;
-            z-index: 4; /* Coloca na frente do vignet */
-        /*}
-
-        /* Input de ID */
-        /*#login-input {
-            position: absolute;
-            top: 7vh;
-            right: 2vw;
-            width: 150px;
-            padding: 5px;
-            display: none;
-            z-index: 4; /* Coloca na frente do vignet */
-        /*}*/
+        }
 
         /* Botão extra que aparece após login */
         #action-btn {
@@ -121,7 +109,6 @@
             cursor: pointer;
             display: none;
             transition: all 0.2s ease;
-            z-index: 4; /* Coloca na frente do vignet */
         }
 
         #action-btn:hover {
@@ -130,8 +117,8 @@
 
         /* Estilos do vignet */
         .vignet {
-            width: 150%; 
-            height: 150%; 
+            width: 0%; 
+            height: 0%; 
             background: url('https://cdn.discordapp.com/attachments/1293723974450020353/1298294250349396028/vignet.png?ex=67190a3e&is=6717b8be&hm=0447eb363e396a9cd95328f67d89632ab21a336e71427414a2d9b6da74aebb39&') no-repeat center center;
             background-size: cover;
             position: absolute;
@@ -189,31 +176,15 @@
     </style>
 </head>
 <body>
-    <h1>NullWork</h1>
-    <div id="nome">N0luh</div>
+    <h1>...NullWork...</h1>
+    <div id="nome"></div>
     <div class="sprite" id="main-sprite"></div>
-    <div id="texto-esquerda">não sei se é sobre viver 
-ou se a gente se contenta para sobreviver
-Será que o dinheirinho que eu já fiz já faz o meu lazer?
-para que que cê quer o mundo te olhando na TV?
-
-se os dois olhinhos que cê ama já amam você </div>
-    <div id="texto-direita">olho no espelho e penso comigo 
-como essa aí é o minha pior inimiga
-se ela foi o único que caminhou comigo
-quando eu não tinha ninguém e precisava de um abrigo
-
-porque que tanto você se maltrata
-se tu já sabe o que tu superou
-deixou bem lá para trás 
-quem já te machucou 
-porque não sente bem 
-com o que já conquistou? </div>
+    <div id="texto-esquerda"></div>
+    <div id="texto-direita"></div>
     <div class="vignet"></div>
 
     <!-- Botões -->
     <button id="login-btn">Login</button>
-    <input type="text" id="login-input" placeholder="Digite o ID">
     <button id="action-btn">Ação</button>
     <button id="view-bio-btn">View Bio</button>
 
@@ -229,23 +200,14 @@ com o que já conquistou? </div>
         // Botão de login
         const loginBtn = document.getElementById('login-btn');
         const actionBtn = document.getElementById('action-btn');
-        const loginInput = document.getElementById('login-input');
         const viewBioBtn = document.getElementById('view-bio-btn');
 
         loginBtn.addEventListener('click', () => {
-            // Exibir input para digitar ID
-            loginInput.style.display = 'block';
-        });
+            // Validação do login
+            let loginCorreto = true; // Isso será substituído pela validação real
 
-        // Validação do ID
-        loginInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                if (loginInput.value === 'tokentemporarioteste123') {
-                    actionBtn.style.display = 'block';
-                    loginInput.style.display = 'none';
-                } else {
-                    alert('ID incorreto.');
-                }
+            if (loginCorreto) {
+                actionBtn.style.display = 'block';
             }
         });
 
@@ -255,6 +217,7 @@ com o que já conquistou? </div>
             setTimeout(() => {
                 // Mostrar os botões e o texto na tela
                 document.getElementById('texto-esquerda').innerHTML = 'Novo texto após fade';
+                // Outros botões sem nomes para fazer depois
             }, 500);
         });
 
