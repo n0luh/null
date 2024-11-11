@@ -9,19 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Evento de mouseover
     button.addEventListener('mouseover', () => {
         buttonImage.src = hoverSrc;
-        buttonImage.style.transform = 'scale(1.2) translateY(-10px)';
-        buttonImage.style.opacity = '0.8';
+        button.style.transform = 'scale(1.2) translateY(-5px)';
+        buttonImage.style.opacity = '1';
     });
 
+    button.addEventListener('click', function() {
+        window.open('discord.gg/sSnum9ytTm', '_blank');
+    });
+    
     // Evento de mouseout
     button.addEventListener('mouseout', () => {
+        button.style.transform = 'scale(1) translateY(0)';
         buttonImage.src = defaultSrc;
-        buttonImage.style.transform = 'scale(1) translateY(0)';
-        buttonImage.style.opacity = '1';
+        buttonImage.style.opacity = '0.9';
     });
 
     const paralaxes = document.querySelectorAll('.parallax');
     const paralaxes2 = document.querySelectorAll('.parallax2');
+    const paralaxes3 = document.querySelectorAll('.parallax3');
 
     document.addEventListener('mousemove', (e) => {
         const mouseX = e.clientX;
@@ -57,12 +62,51 @@ document.addEventListener('DOMContentLoaded', () => {
             quadro.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
         quadro.style.zIndex = 20
         });
+
+        paralaxes3.forEach((quadro, index) => {
+            // Define a intensidade do movimento para cada quadro paralaxe
+            const intensidade = index === 0 ? 30 : 30; // O primeiro paralaxe move mais
+
+            // Calcula a quantidade de movimento
+            const moveX = deltaX * intensidade;
+            const moveY = deltaY * intensidade;
+
+            // Aplica a transformação de paralaxe usando translate3d para melhor performance
+            quadro.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+        });
     });
 
     // Opcional: Remover o efeito quando o mouse sair da janela
     document.addEventListener('mouseleave', () => {
         paralaxes.forEach((quadro) => {
-             quadro.style.transform = `translate3d(0px, 0px, 0)`;
-        });
+            quadro.style.transform = `translate3d(0px, 0px, 0)`;
+       });
+       paralaxes2.forEach((quadro) => {
+        quadro.style.transform = `translate3d(0px, 0px, 0)`;
+   });
+   paralaxes3.forEach((quadro) => {
+    quadro.style.transform = `translate3d(0px, 0px, 0)`;
+});
     });
+
+    var frame = document.getElementById('quadro2');
+    var frameRect = frame.getBoundingClientRect();
+    function syncButtonPosition() {
+        mediaQuery = window.matchMedia('(max-width: 800px)');
+        var frameRect = frame.getBoundingClientRect();
+        if (mediaQuery.matches) {
+            var offsetX = window.innerWidth * 0.25; // 10vw
+            var offsetY = window.innerHeight * 0.33; // 10vh
+        } else {
+            var offsetX = window.innerWidth * 0.028; // 10vw
+            var offsetY = window.innerHeight * 0.32; // 10vh
+        }
+        button.style.left = frameRect.left + offsetX + 'px';
+        button.style.top = frameRect.top + offsetY + 'px';
+    }
+    function update() {
+        syncButtonPosition();
+        requestAnimationFrame(update);
+    }
+    update();
 });
